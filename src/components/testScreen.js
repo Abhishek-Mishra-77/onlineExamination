@@ -32,7 +32,7 @@ const TestScreen = () => {
       <div className="row">
         <div className="col-9 border mx-3 ">
           <div className="row d-flex justify-content-center align-item-center py-3">
-            <div className="col d-flex justify-content-center align-item-center">total Questions : 3</div>
+            <div className="col d-flex justify-content-center align-item-center">Total Questions : 3</div>
             <div className="col d-flex justify-content-center align-item-center">
               <MdTimer style={{ width: "40px", height: "40px" }} />
               <div style={{ width: "40px", height: "40px" }}> <Timer ></Timer></div>
@@ -51,12 +51,13 @@ const TestScreen = () => {
                 </span>
                 {questions[0].subject}
               </h4>
-              <div className="row">
+              <div className="row p-2">
                 <label className="col-6 m-2">
                   <input
                     type="checkbox"
                     checked={selectedOption === "option1"}
                     onChange={() => handleOptionChange("option1")}
+                    className="m-2"
                   />
                   {questions[0].A}
                 </label>
@@ -65,6 +66,7 @@ const TestScreen = () => {
                     type="checkbox"
                     checked={selectedOption === "option2"}
                     onChange={() => handleOptionChange("option2")}
+                    className="m-2"
                   />
                   {questions[0].B}
                 </label>
@@ -73,6 +75,7 @@ const TestScreen = () => {
                     type="checkbox"
                     checked={selectedOption === "option3"}
                     onChange={() => handleOptionChange("option3")}
+                    className="m-2"
                   />
                   {questions[0].C}
                 </label>{" "}
@@ -81,6 +84,7 @@ const TestScreen = () => {
                     type="checkbox"
                     checked={selectedOption === "option4"}
                     onChange={() => handleOptionChange("option4")}
+                    className="m-2"
                   />
                   {questions[0].D}
                 </label>
