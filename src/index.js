@@ -7,6 +7,7 @@ import "../node_modules/bootstrap/dist/js/bootstrap.min.js";
 import { BrowserRouter } from "react-router-dom";
 import store from "./store/store.js";
 import { Provider } from "react-redux";
+import 'animate.css';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<BrowserRouter><Provider store={store}><App /></Provider></BrowserRouter>);

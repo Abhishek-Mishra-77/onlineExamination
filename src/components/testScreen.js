@@ -3,48 +3,76 @@ import { useDispatch, useSelector } from "react-redux";
 import { questionSliceAction } from "../store/test";
 import { MdTimer } from "react-icons/md";
 import Timer from "./timer";
+import { PiFastForwardCircleBold } from "react-icons/pi";
+import { FaClipboardQuestion } from "react-icons/fa6";
+import { IoCheckmarkDoneCircleSharp } from "react-icons/io5";
+import { MdOutlineRadioButtonChecked } from "react-icons/md";
+import QuestionSelector from "./questionSelector";
 
 const TestScreen = () => {
+  const [nextVisible,setNextVisible]=useState(false)
   const dispatch = useDispatch();
   const questions = useSelector((state) => {
     return state.current;
   });
-  const selectorSheet = useSelector((state) => state.selectorSheet);
-  console.log("selectorSheet", selectorSheet);
+  const allQuestions = useSelector((state) => state.question);
+
   console.log("currentquestions", questions);
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
+    setNextVisible(true)
   };
-  const questionHandler = () => {};
+  const questionHandler = (queNo) => {
+    dispatch(questionSliceAction.jumpQuestion(queNo));
+  };
   const skipQuestionHandler = () => {
-    console.log("called", questions[0].no);
     dispatch(questionSliceAction.skipQuestion(questions[0].no));
+    setSelectedOption(null)
   };
   const submitQuestionHandler = (props) => {
-    console.log(props.no);
-    console.log("called", questions[0].no);
     dispatch(questionSliceAction.submitQuestion(questions[0].no));
+    setSelectedOption(null)
+    setNextVisible(false)
   };
   return (
     <div className="container-fluid">
-      <div className="row">
-        <div className="col-9 border mx-3 ">
-          <div className="row d-flex justify-content-center align-item-center py-3">
-            <div className="col d-flex justify-content-center align-item-center">Total Questions : 3</div>
+      <div className="row pt-4 ">
+        <div className="col-9 border mx-3 shadow animate__animated animate__fadeInLeft">
+          <div className="row d-flex justify-content-center align-item-center pt-3 ">
+            <div className="col d-flex justify-content-center align-item-center fw-bolder">
+              <FaClipboardQuestion style={{ width: "40px", height: "40px" }} />
+              <span style={{ marginTop: "10px" }}>
+                Total Questions : {allQuestions.length}
+              </span>
+            </div>
             <div className="col d-flex justify-content-center align-item-center">
               <MdTimer style={{ width: "40px", height: "40px" }} />
-              <div style={{ width: "40px", height: "40px" }}> <Timer ></Timer></div>
-              
+              <div
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  marginTop: "5px",
+                  fontWeight: "bolder",
+                }}
+              >
+                <Timer></Timer>
+              </div>
             </div>
-            <button type="button" className="col-3 btn btn-outline-success d-flex justify-content-center align-items-center">
+            <button
+              type="button"
+              className="col-2 btn btn-outline-success d-flex justify-content-center align-items-center me-4 fw-bold"
+            >
               Finish Test
+              <IoCheckmarkDoneCircleSharp
+                style={{ width: "30px", height: "30px", margin: "5px" }}
+              ></IoCheckmarkDoneCircleSharp>
             </button>
           </div>
           <hr></hr>
           <div className="container">
-            <>
+            <div className="ms-5">
               <h4>
                 <span className="mx-3" key={questions[0].subject}>
                   Que {questions[0].no + 1} :
@@ -89,10 +117,10 @@ const TestScreen = () => {
                   {questions[0].D}
                 </label>
               </div>
-            </>
+            </div>
           </div>
           <div className="container">
-            <div className="d-flex justify-content-end my-2">
+            <div className="d-flex justify-content-end my-4">
               <button
                 type="button"
                 class="btn btn-outline-danger mx-2"
@@ -100,44 +128,33 @@ const TestScreen = () => {
               >
                 Skip
               </button>
-              <button
+              {!nextVisible&&<button
                 type="button"
-                className="btn btn-outline-warning mx-2"
+                className="btn border-warning mx-2 fw-bold"
+                // style={{border:"2px solid gold"}}
+               
+              >
+                next{" "}
+                <PiFastForwardCircleBold
+                  style={{ width: "30px", height: "30px" }}
+                />
+              </button>}
+              {nextVisible&&<button
+                type="button"
+                className="btn btn-warning mx-2 fw-bold"
                 onClick={() => {
                   submitQuestionHandler(questions[0]);
                 }}
               >
-                Submit
-              </button>
+                next{" "}
+                <PiFastForwardCircleBold
+                  style={{ width: "30px", height: "30px" }}
+                />
+              </button>}
             </div>
           </div>
         </div>
-        <div className="col border overflow-y-scroll">
-          <div className="d-flex flex-wrap">
-            {selectorSheet.map((current) => {
-              let currentClassName = "";
-              currentClassName =
-                current.attempted && current.submit
-                  ? "card m-2 text-center bg-success text-white fw-bold"
-                  : !current.attempted && !current.submit
-                  ? "card m-2 text-center bg-danger text-white fw-bold"
-                  : current.attempted && !current.submit
-                  ? "card m-2 text-center bg-warning text-white fw-bold"
-                  : "";
-
-              return (
-                <div
-                  key={current.no+1}
-                  className={currentClassName}
-                  style={{ width: "50px", height: "30px" }}
-                  onClick={questionHandler}
-                >
-                  {current.no+1}
-                </div>
-              );
-            })}
-          </div>
-        </div>
+       <QuestionSelector></QuestionSelector>
       </div>
     </div>
   );

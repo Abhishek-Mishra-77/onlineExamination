@@ -21,9 +21,7 @@ function App() {
         <Route path="/test" element={<TestScreen></TestScreen>}></Route>
         <Route path="*" element={<Login></Login>}></Route>
       </Routes>
-      {/* <Login></Login> */}
-      {/* <Instructions></Instructions> */}
-      {/* <TestScreen></TestScreen> */}
+     
     </>
   );
 }

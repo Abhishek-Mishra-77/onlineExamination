@@ -5,6 +5,9 @@
  
   justify-content: center;
   align-items: center;
+  background:url("../../public/teacher-s-day-elements-composition.jpg") ;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .container {
   display: flex;

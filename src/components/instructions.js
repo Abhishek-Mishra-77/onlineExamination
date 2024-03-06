@@ -6,15 +6,15 @@ const Instructions = () => {
 navigate("/test")
     }
   return (
-    <div className="container border h-100">
+    <div className="container border h-100 animate__animated animate__fadeInRight mt-4">
       <div className="row">
-        <div className="col d-flex justify-content-center">
-          <div className="mx-3">
+        <div className="col d-flex justify-content-center mt-4">
+          <div className="fw-bolder">
             <MdOutlineIntegrationInstructions
               style={{ height: "30px", width: "30px" }}
             ></MdOutlineIntegrationInstructions>
           </div>
-          <div className="mx-3 fw-bolder">
+          <div className="mx-3 fw-bolder ">
             <p style={{ height: "30px" }}>Instructions</p>
           </div>
         </div>
