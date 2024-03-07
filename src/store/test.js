@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
+  answerSheet:{
+
+  },
   question: [
     {
       no: 0,
@@ -8,7 +11,7 @@ const initialState = {
       B: "6",
       C: "3",
       D: "5",
-      attempted: false,
+      attempted: true,
       submit: false,
     },
     {
@@ -2407,7 +2410,8 @@ const questionSlice = createSlice({
   reducers: {
     questionList() {},
     jumpQuestion(state,action) {
-      state.current = [state.question[action.payload]]
+      state.current = [state.question[action.payload]];
+      state.question[action.payload].attempted=true
 
       //current+1 when submit button will be clicked or skip btn will be clicked
     },
@@ -2424,8 +2428,9 @@ const questionSlice = createSlice({
       state.current = [state.question[action.payload+1]];
     },
     skipQuestion(state, action) {
+      console.log(action.payload)
       const question = state.question;
-      question[action.payload].attempted = true;
+      question[action.payload+1].attempted = true;
      
       state.question = question;
       if(action.payload==state.question.length-1){
@@ -2434,6 +2439,18 @@ const questionSlice = createSlice({
       else
       state.current = [state.question[action.payload+1]];
     },
+    submitAnswer(state,action){
+      console.log(action.payload)
+      state.answerSheet[action.payload.queno]=action.payload.selectedOption
+    //  if(state.answerSheet[action.payload.queno]) {
+      
+
+    //  }
+    //  else{
+
+    //  }
+      
+    }
   },
 });
 export const questionSliceAction = questionSlice.actions;

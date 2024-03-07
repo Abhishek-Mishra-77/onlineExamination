@@ -4,9 +4,11 @@ import { questionSliceAction } from "../store/test";
 import { MdTimer } from "react-icons/md";
 import Timer from "./timer";
 import { PiFastForwardCircleBold } from "react-icons/pi";
+import { BsXCircleFill } from "react-icons/bs";
 import { FaClipboardQuestion } from "react-icons/fa6";
 import { IoCheckmarkDoneCircleSharp } from "react-icons/io5";
 import { MdOutlineRadioButtonChecked } from "react-icons/md";
+import { IoChevronForwardCircle } from "react-icons/io5";
 import QuestionSelector from "./questionSelector";
 
 const TestScreen = () => {
@@ -19,6 +21,11 @@ const TestScreen = () => {
 
   console.log("currentquestions", questions);
   const [selectedOption, setSelectedOption] = useState(null);
+  const submitAnswerHandler=(queno)=>{
+    // console.log(queno)
+    // console.log(selectedOption)
+    dispatch(questionSliceAction.submitAnswer({queno,selectedOption}))
+  }
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
@@ -39,7 +46,7 @@ const TestScreen = () => {
   return (
     <div className="container-fluid">
       <div className="row pt-4 ">
-        <div className="col-9 border mx-3 shadow animate__animated animate__fadeInLeft">
+        <div className="col-8 border mx-3 shadow animate__animated animate__fadeInLeft">
           <div className="row d-flex justify-content-center align-item-center pt-3 ">
             <div className="col d-flex justify-content-center align-item-center fw-bolder">
               <FaClipboardQuestion style={{ width: "40px", height: "40px" }} />
@@ -130,25 +137,26 @@ const TestScreen = () => {
               </button>
               {!nextVisible&&<button
                 type="button"
-                className="btn border-warning mx-2 fw-bold"
+                className="btn border-danger mx-2 fw-bold text-danger"
                 // style={{border:"2px solid gold"}}
-               
+               onClick={submitAnswerHandler}
               >
                 next{" "}
-                <PiFastForwardCircleBold
+                <BsXCircleFill
                   style={{ width: "30px", height: "30px" }}
                 />
               </button>}
               {nextVisible&&<button
                 type="button"
-                className="btn btn-warning mx-2 fw-bold"
+                className="btn btn-warning mx-2 fw-bold "
                 onClick={() => {
                   submitQuestionHandler(questions[0]);
+                  submitAnswerHandler(questions[0].no)
                 }}
               >
                 next{" "}
                 <PiFastForwardCircleBold
-                  style={{ width: "30px", height: "30px" }}
+                  style={{ width: "30px", height: "30px",color:"white" }}
                 />
               </button>}
             </div>

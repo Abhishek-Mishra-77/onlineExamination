@@ -1,10 +1,10 @@
 import { MdOutlineIntegrationInstructions } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 const Instructions = () => {
-    const navigate=useNavigate()
-    const startTestHandler=()=>{
-navigate("/test")
-    }
+  const navigate = useNavigate();
+  const startTestHandler = () => {
+    navigate("/test");
+  };
   return (
     <div className="container border h-100 animate__animated animate__fadeInRight mt-4">
       <div className="row">
@@ -55,7 +55,11 @@ navigate("/test")
         qui officia deserunt mollit anim id est laborum.
       </div>
       <div className="text-center">
-        <button type="button" class="btn btn-outline-info m-2 " onClick={startTestHandler}>
+        <button
+          type="button"
+          class="btn btn-outline-info m-2 fw-bolder"
+          onClick={startTestHandler}
+        >
           Start test
         </button>
       </div>
