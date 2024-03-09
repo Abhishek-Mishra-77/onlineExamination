@@ -57,7 +57,7 @@ const Instructions = () => {
       <div className="text-center">
         <button
           type="button"
-          class="btn btn-outline-info m-2 fw-bolder"
+          className="btn btn-outline-info m-2 fw-bolder"
           onClick={startTestHandler}
         >
           Start test

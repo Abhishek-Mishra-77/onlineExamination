@@ -4,9 +4,6 @@ import { questionSliceAction } from "../store/test";
 
 const QuestionSelector = () => {
   const dispatch = useDispatch();
-  const questions = useSelector((state) => {
-    return state.current;
-  });
   const allQuestions = useSelector((state) => state.question);
   const questionHandler = (queNo) => {
     dispatch(questionSliceAction.jumpQuestion(queNo));

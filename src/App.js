@@ -1,13 +1,11 @@
-import { Route, Router, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Instructions from "./components/instructions";
 import Login from "./components/login ";
 import TestScreen from "./components/testScreen";
-import { useSelector } from "react-redux";
+import FinalSubmit from "./components/FinalSubmit";
 
 function App() {
-  const states = useSelector((state) => state);
-  console.log(states);
   return (
     <>
       {" "}
@@ -38,6 +36,11 @@ function App() {
               <TestScreen></TestScreen>
             </>
           }
+        ></Route>
+        <Route
+          exact
+          path="/finalsubmit"
+          element={<FinalSubmit></FinalSubmit>}
         ></Route>
         <Route path="*" element={<Login></Login>}></Route>
       </Routes>
