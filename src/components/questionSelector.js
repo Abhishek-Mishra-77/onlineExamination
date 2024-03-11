@@ -10,7 +10,7 @@ const QuestionSelector = () => {
   };
 
   return (
-    <div className="col border shadow animate__animated animate__fadeInDown">
+    <div className="col animate__animated animate__fadeInDown test_screen_right">
       <div className="text-center">
         <div className="badge text-white bg-info p-2 fw-bolder my-2">
           Question selector

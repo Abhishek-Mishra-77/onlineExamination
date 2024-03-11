@@ -61,15 +61,14 @@ const TestScreen = () => {
     setNextVisible(false);
   };
 
-
-  const onFinalSubmitHandler = ()  =>  {
-    navigate('/finalsubmit')
-  }
+  const onFinalSubmitHandler = () => {
+    navigate("/finalsubmit");
+  };
 
   return (
     <div className="container-fluid">
-      <div className="row pt-4 ">
-        <div className="col-8 border mx-3 shadow animate__animated animate__fadeInLeft">
+      <div className="row pt-4 test_screen_main">
+        <div className="col-8 mx-3 shadow animate__animated animate__fadeInLeft test_screen_left">
           <div className="row d-flex justify-content-center align-item-center pt-3 ">
             <div className="col d-flex justify-content-center align-item-center fw-bolder">
               <FaClipboardQuestion style={{ width: "40px", height: "40px" }} />
@@ -93,11 +92,11 @@ const TestScreen = () => {
             <button
               type="button"
               onClick={onFinalSubmitHandler}
-              className="col-2 btn btn-outline-success d-flex justify-content-center align-items-center me-4 fw-bold"
+              className="col-2 fs btn btn-outline-success d-flex justify-content-center align-items-center me-4 fw-bold"
             >
               Finish Test
               <IoCheckmarkDoneCircleSharp
-                style={{ width: "30px", height: "30px", margin: "5px" }}
+                style={{ width: "20px", height: "20px", margin: "5px" }}
               ></IoCheckmarkDoneCircleSharp>
             </button>
           </div>
@@ -154,7 +153,7 @@ const TestScreen = () => {
             <div className="d-flex justify-content-end my-4">
               <button
                 type="button"
-                className="btn btn-outline-danger mx-2"
+                className="btn  btn-outline-warning mx-2 text-warning skip_btn"
                 onClick={skipQuestionHandler}
               >
                 Skip
@@ -162,10 +161,10 @@ const TestScreen = () => {
               {!nextVisible && (
                 <button
                   type="button"
-                  className="btn border-danger mx-2 fw-bold text-danger"
+                  className="btn  border-danger mx-2 fw-bold text-danger"
                 >
                   next{" "}
-                  <BsXCircleFill style={{ width: "30px", height: "30px" }} />
+                  <BsXCircleFill style={{ width: "15px", height: "15px" }} />
                 </button>
               )}
               {nextVisible && (
@@ -186,7 +185,7 @@ const TestScreen = () => {
             </div>
           </div>
         </div>
-        <QuestionSelector/>
+          <QuestionSelector />
       </div>
     </div>
   );

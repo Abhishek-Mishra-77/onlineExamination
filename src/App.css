@@ -100,6 +100,37 @@
   width: 15px;
   height: 15px;
   border-radius: 50%;
-
   background-color: red;
+}
+
+.test_screen_left {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.test_screen_right {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.skip_btn:hover {
+  color: white !important;
+}
+
+/* MEDIA QUERY  */
+
+@media (max-width: 768px) {
+  .test_screen_main {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+
+  .test_screen_left {
+    width: 95% !important;
+  }
+  .test_screen_right {
+    width: 95% !important;
+    margin-left: 20px !important;
+  }
+  .fs {
+    font-size: 12px !important;
+  }
 }
